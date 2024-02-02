@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="favicon.ico" href="https://img.icons8.com/?size=256&id=wcAdzrSxP9X7&format=png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/main.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Visitor Guestbook</title>
+  </head>
+  <body>
+    <header>
+      <h1>Visitor Guestbook</h1>
+    </header>
+    <main>
+      <div class="messages"></div>
+      <div class="message-form">
+        <h2>Enter a message:</h2>
+        <form id="form">
+          <textarea id="message" name="message" placeholder="Your message" required=""></textarea>
+          <div class="user-info">
+            <label for="username">Username:</label>
+            <input type="text" name="username" placeholder="Your username" required />
+            <label for="userPhoto">Photo:</label>
+            <input type="text" name="userPhoto" placeholder="URL image" />
+            <button type="submit">Send</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer>Visitor Guestbook - Michael Cowley</footer>
+  </body>
+</html>
