@@ -35,9 +35,56 @@ main {
   flex-direction: column;
 }
 
-.messages {
+#messages-container {
   flex: 1;
-  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  max-height: 66vh;
+  overflow-y: auto;
+}
+
+#messages-container .message-container {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  height: 100px;
+}
+
+#messages-container .message-container img {
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+#messages-container .message-container button {
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  font: inherit;
+  margin: 0px;
+  width: 100px;
+  cursor: pointer;
+}
+
+#messages-container .message-container button:hover {
+  background-color: grey;
+}
+
+#messages-container .message-container .text-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-width: 150px;
+}
+
+#messages-container .message-container .text-container h3 {
+  margin: 0px;
+  margin-top: 5px;
+  text-decoration: underline;
+}
+
+#messages-container .message-container .text-container p {
+  margin: 0px;
 }
 
 .message-form {
@@ -73,20 +120,20 @@ main {
 }
 
 .message-form #form input {
-  padding: 5px;
   font: inherit;
+  padding: 5px;
 }
 
 .message-form #form textarea {
+  font: inherit;
   min-height: 50px;
   padding: 5px;
-  font: inherit;
 }
 
 .message-form #form button {
+  font: inherit;
   padding: 5px;
   cursor: pointer;
-  font: inherit;
 }
 
 footer {
@@ -95,4 +142,16 @@ footer {
   color: rgba(255, 255, 255, 0.5);
   text-align: center;
   padding: 15px;
+  margin-top: 8px;
+}
+
+@media screen and (max-width: 850px) {
+  .message-form #form .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
 }

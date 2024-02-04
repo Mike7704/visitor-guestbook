@@ -13,16 +13,16 @@
       <h1>Visitor Guestbook</h1>
     </header>
     <main>
-      <div class="messages"></div>
+      <div id="messages-container"></div>
       <div class="message-form">
         <h2>Enter a message:</h2>
         <form id="form">
           <textarea id="message" name="message" placeholder="Your message" required=""></textarea>
           <div class="user-info">
             <label for="username">Username:</label>
-            <input type="text" name="username" placeholder="Your username" required />
+            <input id="username" type="text" name="username" placeholder="Your username" required />
             <label for="userPhoto">Photo:</label>
-            <input type="text" name="userPhoto" placeholder="URL image" />
+            <input id="userPhoto" type="text" name="userPhoto" placeholder="Image URL" />
             <button type="submit">Send</button>
           </div>
         </form>

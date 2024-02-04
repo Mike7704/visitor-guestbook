@@ -24,12 +24,12 @@ app.get("/messages", (req, res) => {
     if (req.query.id) {
       //res.status(200).send("You sent a query");
       let message = db.prepare(`SELECT * FROM messages WHERE id = ?`).all(req.query.id);
-      res.status(200).json({ response: message });
+      res.status(200).json(message);
       return;
     }
     // Get all messages in the database
     let messages = db.prepare(`SELECT * FROM messages`).all();
-    res.status(200).json({ response: messages });
+    res.status(200).json(messages);
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -47,8 +47,13 @@ app.post("/messages", (req, res) => {
   try {
     const username = req.body.username;
     const message = req.body.message;
-    const likes = req.body.likes;
-    const userPhoto = req.body.userPhoto;
+    const likes = 0; // Default likes to 0
+    let userPhoto = req.body.userPhoto;
+
+    // If there is no image, use default
+    if (!userPhoto) {
+      userPhoto = "https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png";
+    }
 
     // Run SQL statement to insert new message - ??'s are replaced by values in .run (username, message, likes, userPhoto)
     const newMessage = db
@@ -60,19 +65,14 @@ app.post("/messages", (req, res) => {
   }
 });
 
-// Update message in the database
-app.put("/messages/:id", (req, res) => {
-  console.log(req.params, req.body);
+// Update likes in the database
+app.put("/messages/:id/increaseLikes", (req, res) => {
+  //console.log(req.params, req.body);
   try {
-    const id = req.params.id;
-    const username = req.body.username;
-    const message = req.body.message;
-    const likes = req.body.likes;
-    const userPhoto = req.body.userPhoto;
+    const messageId = req.params.id;
+    const newLikesValue = req.body.likes + 1;
 
-    const updateMessage = db
-      .prepare(`UPDATE messages SET username = ?, message = ?, likes = ?, userPhoto = ? WHERE id = ?`)
-      .run(username, message, likes, userPhoto, id);
+    const updateMessage = db.prepare(`UPDATE messages SET likes = ? WHERE id = ?`).run(newLikesValue, messageId);
     res.status(200).json({ response: updateMessage });
   } catch (err) {
     res.status(500).json({ error: err });
